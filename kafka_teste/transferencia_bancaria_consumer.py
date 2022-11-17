@@ -3,7 +3,7 @@ from pprint import pprint
 import json
 
 transferencia_bancaria_consumer = KafkaConsumer("transferencia_bancaria",
-                                                bootstrap_servers="server",
+                                                bootstrap_servers="localhost:9092",
                                                 value_deserializer=lambda m: json.loads(m.decode("utf-8")),
                                                 )
 
