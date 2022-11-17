@@ -19,12 +19,13 @@ class ProcessaTransacoesService:
         self._tb_sender = TBSender()
 
     def processa_transacoes(self) -> None:
-        transacao = self._tb_receiver.get_transferencia_bancaria()
-        if type(transacao) == TransacaoPIX or self._verifica_horario_valido(transacao.envio):
-            self._envia_para_antifraude(transacao)
-            self._envia_para_consolidador(transacao)
-        else:
-            self._envia_para_transferencia_bancaria(transacao)
+        while True:
+            transacao = self._tb_receiver.get_transferencia_bancaria()
+            if type(transacao) == TransacaoPIX or self._verifica_horario_valido(transacao.envio):
+                self._envia_para_antifraude(transacao)
+                self._envia_para_consolidador(transacao)
+            else:
+                self._envia_para_transferencia_bancaria(transacao)
     
     def _verifica_horario_valido(self, data: datetime) -> bool:
         if self._calendario.is_working_day(data):
