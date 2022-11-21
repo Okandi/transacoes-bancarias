@@ -63,11 +63,8 @@ class ProcessaTransacoesService:
             transacao.valor,
             transacao.envio
         )
-        self._cria_arquivo_backup(consolidador_info)
+        self._file_writer.save_transacao(consolidador_info)
         self._tb_sender.send_to_consolidador(consolidador_info)
-    
-    def _cria_arquivo_backup(self, info: ConsolidadorInfo) -> None:
-        self._file_writer.save_transacao(info)
 
     def _envia_para_transferencia_bancaria(self, transacao: TransacaoTED) -> None:
         transacao.envio = self._corrige_data_para_dia_util(transacao.envio)

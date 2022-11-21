@@ -15,9 +15,9 @@ class TBReceiver(ITBReceiver):
             try:
                 return function(*args)
             except KeyError as e:
-                print(f"Transação inválida: campo {e} não existe")
+                print(f"Transação inválida: campo '{e.args[0]}' não existe")
             except ValueError as e:
-                print(e)
+                print(e.args[0])
             except Exception as e:
                 print(f"Ocorreu um erro inesperado: \n{e}")
             return args[0].get_transferencia_bancaria()
