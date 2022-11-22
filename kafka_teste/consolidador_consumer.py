@@ -4,6 +4,7 @@ import json
 
 consolidador_consumer = KafkaConsumer("consolidador",
                                       bootstrap_servers="localhost:9092",
+                                      auto_offset_reset="earliest",
                                       value_deserializer=lambda m: json.loads(m.decode("utf-8"))
                                       )
 

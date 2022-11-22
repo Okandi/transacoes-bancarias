@@ -48,7 +48,7 @@ def test_cria_transacao_pix(mock_kafka_infrastructure, mock_tipo_transacao,
 @patch(caminho+"TransacaoTED")
 @patch(caminho+"TipoTransacao")
 @patch(caminho+"TBKafkaInfrastructure")
-def test_transacao_tipo_errado(mock_kafka_infrastructure, mock_tipo_transacao,
+def test_trata_tipo_errado(mock_kafka_infrastructure, mock_tipo_transacao,
                                mock_transacao_ted, mock_print, fake_datetime):
     stub_transacao1 = MagicMock()
     stub_transacao2 = MagicMock()
@@ -68,7 +68,7 @@ def test_transacao_tipo_errado(mock_kafka_infrastructure, mock_tipo_transacao,
 @patch(caminho+"TransacaoTED")
 @patch(caminho+"TipoTransacao")
 @patch(caminho+"TBKafkaInfrastructure")
-def test_transacao_campo_errado(mock_kafka_infrastructure, mock_tipo_transacao,
+def test_trata_campo_inexistente(mock_kafka_infrastructure, mock_tipo_transacao,
                                mock_transacao_ted, mock_print, fake_datetime):
     stub_transacao1 = MagicMock()
     stub_transacao2 = MagicMock()
